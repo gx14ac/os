@@ -1,0 +1,9 @@
+# 自作リンカスクリプトの使用
+[target.riscv64imac-unknown-none-elf]
+rustflags = [
+    "-C", "link-arg=-Tsrc/linker/linker.ld",
+]
+
+# コンパイルターゲットプラットフォームの設定
+[build]
+target = "riscv64imac-unknown-none-elf"
