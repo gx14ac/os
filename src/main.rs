@@ -1,18 +1,20 @@
 #![no_std]
 #![no_main]
-use core::panic::PanicInfo;
+#![warn(missing_docs)]
+#![feature(llvm_asm)]
+#![feature(global_asm)]
+#![feature(panic_info_message)]
 
-/*
-    標準のpanicが使えないため、
-    panic_handlerを明示的に使用 (Cargo.tomlのprofileセクションに定義済み)
-*/
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    loop {}
-}
+#[macro_use]
+mod console;
+mod panic;
+mod sbi;
 
-/* override to crt0 */
+global_asm!(include_str!("asm/entry.asm"));
+
+/// Runtime Override
 #[no_mangle]
-pub extern "C" fn _start() -> ! {
-    loop {}
+pub extern "C" fn rust_main() -> ! {
+    println!("Hello!");
+    panic!("end of rust_main")
 }
