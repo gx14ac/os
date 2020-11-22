@@ -1,8 +1,8 @@
-use riscv::register::{sstatus::Sstatus, scause::Scause};
+use riscv::register::{scause::Scause, sstatus::Sstatus};
 
 #[repr(C)]
 pub struct Context {
-    pub x: [usize, 32],
+    pub x: [usize; 32],
     pub sstatus: Sstatus,
-    pub sepc: usize
+    pub sepc: usize,
 }
