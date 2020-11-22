@@ -7,6 +7,7 @@
 
 #[macro_use]
 mod console;
+mod interrupt;
 mod panic;
 mod sbi;
 
@@ -16,5 +17,12 @@ global_asm!(include_str!("asm/entry.asm"));
 #[no_mangle]
 pub extern "C" fn rust_main() -> ! {
     println!("Hello!");
-    panic!("end of rust_main")
+    interrupt::init();
+
+    unsafe {
+        // 割り込み処理発生
+        llvm_asm!("ebreak"::::"volatile");
+    };
+
+    loop {}
 }

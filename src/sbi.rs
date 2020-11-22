@@ -40,3 +40,7 @@ pub fn shutdown() -> ! {
     sbi_syscall(SBI_SHUTDOWN, 0, 0, 0);
     unreachable!()
 }
+
+pub fn set_timer(time: usize) {
+    sbi_syscall(SBI_SET_TIMER, time, 0, 0);
+}
