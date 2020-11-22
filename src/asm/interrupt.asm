@@ -52,7 +52,7 @@ __interrupt:
 
     #### CSRレジスタの取り出しと保存 ####
     csrr    s1, sstatus
-    csrr    s2, spec
+    csrr    s2, sepc
     SAVE    s1, 32
     SAVE    s2, 33
 
@@ -60,7 +60,7 @@ __interrupt:
     mv      a0, sp
     csrr    a1, scause
     csrr    a2, stval
-    jal
+    jal     handle_interrupt
 
     .globl __restore
 
@@ -71,7 +71,7 @@ __interrupt:
     LOAD    s1, 32
     LOAD    s2, 33
     csrw    sstatus, s1
-    csrw    spec, s2
+    csrw    sepc, s2
 
     LOAD    x1, 1
     LOAD    x3, 3
