@@ -41,5 +41,6 @@ SECTIONS
         *(.sbss .bss .bss.*)
     }
 
+    . = ALIGN(4K);
     kernel_end = .;
 }

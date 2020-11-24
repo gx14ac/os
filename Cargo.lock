@@ -45,6 +45,9 @@ name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
+dependencies = [
+ "spin",
+]
 
 [[package]]
 name = "memchr"
@@ -56,7 +59,9 @@ checksum = "0ee1c47aaa256ecabcaea351eae4a9b01ef39ed810004e298d2511ed284b1525"
 name = "os"
 version = "0.1.0"
 dependencies = [
+ "bit_field",
  "buddy_system_allocator",
+ "lazy_static",
  "riscv",
 ]
 

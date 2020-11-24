@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+pub mod address;
 pub mod config;
 pub mod heap;
 
